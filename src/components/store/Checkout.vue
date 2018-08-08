@@ -2,19 +2,12 @@
   <section>
     <label>Total: ${{ $store.getters.total }}</label>
     <b-table :data="$store.getters.objects" :columns="columns"></b-table>
-
-    <button v-if="$store.getters.objectsInCar > 0" class="button is-info is-outlined" type="button">
-      <b-icon icon="currency-usd"></b-icon>
-      <router-link to="/Checkout">
-        Checkout
-      </router-link>
-    </button>
   </section>
 </template>
 
 <script>
 export default {
-  name: "Cart",
+  name: "Checkout",
   data() {
     return {
       loading: false,
@@ -44,9 +37,9 @@ export default {
         }
       ]
     };
-  },
-  created() {
-    let self = this;
   }
 };
 </script>
+
+<style>
+</style>

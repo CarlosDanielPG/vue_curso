@@ -9,12 +9,14 @@
               </a>
           </div>
           <b-dropdown>
-            <button class="button is-primary" type="button" slot="trigger">
-                <b-icon icon="cart"></b-icon>
+            <button class="button is-warning is-medium" type="button" slot="trigger">
+                <router-link to="/Cart">
+                  <b-icon icon="cart"></b-icon>
+                </router-link> &nbsp
                 {{ $store.getters.objectsInCar }}
                 <b-icon icon="menu-down"></b-icon>
             </button>
-            <b-dropdown-item v-for="object in $store.getters.objects " :key="object.id">{{ object.name }} ($ {{ object.price }})</b-dropdown-item>
+            <b-dropdown-item v-for="object in $store.getters.objects " :key="object.id">({{ object.count}}) {{ object.name }} ($ {{ object.price * object.count }}) </b-dropdown-item>
         </b-dropdown>
           <div class="navbar-menu">
             <div class="navbar-end">

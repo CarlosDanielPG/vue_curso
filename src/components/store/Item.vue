@@ -5,7 +5,8 @@
           <div class="media">
             <div class="media-content">
                 <p class="title is-4">{{ item.name }}</p>
-              <p class="subtitle is-6">$ {{ item.price }}</p>
+                <p class="subtitle is-6">$ {{ item.price }}</p>
+                <p class="subtitle is-6">In Stock: {{ item.stock }}</p>
             </div>
           </div>
           <div class="content level-left">
@@ -40,12 +41,11 @@ export default {
       self.$store.state.services.productsService
         .getAll()
         .then(r => {
-          console.log(r.data.items);
           self.loading = false;
           r.data.items.forEach(item => {
             if (item.id == id) {
-              console.log(item);
               self.item = item;
+              self.item.stock -= self.$store.getters.exist(id);
             }
           });
         })
@@ -54,8 +54,13 @@ export default {
     addToCart: function() {
       let self = this;
       if (self.item != "") {
-        self.$store.commit("addToCart", self.item);
-        self.$router.replace("/");
+        if (self.item.stock > 0) {
+          self.$store.commit("addToCart", self.item);
+          //self.$router.replace("/");
+          self.item.stock--;
+        } else {
+          alert("Ya no hay productos en existencia");
+        }
       }
     }
   }
