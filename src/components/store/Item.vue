@@ -56,7 +56,6 @@ export default {
       if (self.item != "") {
         if (self.item.stock > 0) {
           self.$store.commit("addToCart", self.item);
-          //self.$router.replace("/");
           self.item.stock--;
         } else {
           alert("Ya no hay productos en existencia");

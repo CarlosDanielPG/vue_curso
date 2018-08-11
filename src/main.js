@@ -6,6 +6,7 @@ import router from "./router";
 import Buefy from "buefy";
 import "buefy/lib/buefy.css";
 import store from "./store/index";
+import CardValidator from "card-validator";
 
 Vue.use(Buefy);
 
@@ -16,6 +17,9 @@ new Vue({
   el: "#app",
   router,
   store,
+  beforeCreate() {
+    this.$store.commit("initialiseStore");
+  },
   components: { App },
   template: "<App/>"
 });

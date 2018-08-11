@@ -9,7 +9,7 @@ class ProductsService {
 
   getAll(params) {
     let self = this;
-    return self.axios.get(`//api.jsonbin.io/b/5b665c1b7b212953678ad6b5/2`);
+    return self.axios.get(`//api.jsonbin.io/b/5b665c1b7b212953678ad6b5/3`);
   }
 
   getById(id) {

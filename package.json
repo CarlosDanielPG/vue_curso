@@ -12,6 +12,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "buefy": "^0.6.6",
+    "card-validator": "^5.0.0",
     "font-awesome": "^4.7.0",
     "material-icons": "^0.2.3",
     "node-sass": "^4.9.2",

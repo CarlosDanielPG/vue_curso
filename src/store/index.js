@@ -21,7 +21,7 @@ const store = new Vuex.Store({
       return state.cart;
     },
     total: state => {
-      return state.cart.reduce((acc, item) => acc + item.price, 0);
+      return state.cart.reduce((acc, item) => acc + item.price * item.count, 0);
     },
     exist: state => id => {
       var count = 0;
@@ -35,6 +35,12 @@ const store = new Vuex.Store({
     }
   },
   mutations: {
+    initialiseStore(state) {
+      // Check if the ID exists
+      if (localStorage.getItem("cart")) {
+        state.cart = JSON.parse(localStorage.getItem("cart"));
+      }
+    },
     addToCart(state, item) {
       var found = false;
       state.cart.forEach(i => {
@@ -50,6 +56,19 @@ const store = new Vuex.Store({
         item.count = 1;
         state.cart.push(item);
       }
+      localStorage.setItem("cart", JSON.stringify(state.cart));
+    },
+    deleteToCart(state, id) {
+      state.cart.forEach(item => {
+        if (item.id == id) {
+          //if (item.count == 1) {
+          state.cart = state.cart.filter(i => i.id != id);
+          /*} else {
+            item.count--;
+          }*/
+        }
+      });
+      localStorage.setItem("cart", JSON.stringify(state.cart));
     }
   }
 });
